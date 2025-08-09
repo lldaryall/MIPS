@@ -1,0 +1,80 @@
+Programing Assignment 4
+
+Overview
+    This program implements a 5-stage MIPS pipeline similator, it has the basic pipeline stages IF, ID, EX, MEM, and WB.
+    I created a C program that reads in test files, with machine instructions
+    and simulate their exucution, in stages in a pipelined MIPS processor.
+Features 
+    pipeline stages: Instruction Fetch, Instruction Decode, Execute, Memory Access, and Write Back
+    Hazard Detection: Detects load use hazards and incerts stalls
+    Instruction Supported:  add, sub, lw, sw, andi, ori, sll, bne, halt, noop
+
+Compilation
+    gcc -o PA2 PA2.c
+
+Running the Simulator
+
+    ./PA2 < input_file.in > output_file.out
+
+Using the Test Generator
+    To convert assembly files to machine code on linprog and setting right permissions
+
+    chmod 744 testGen.exe
+    ./testGen.exe < assembly_file.asm > input_file.in
+
+Input Format
+    The input file should contain:
+            Machine code instructions, one per line
+            A blank line
+            Data memory values, one per line
+
+Output Format
+    The simulator outputs:
+        Pipeline state at each cycle
+        Register values
+        Memory contents
+        Final stats ie,cycles, stalls, branches, mispredictions
+
+Test cases
+    I created 10 smaller test cases, as it is easier when I broke it down into smaller chunks.
+    and there are the several test cases that came with the homework
+        1.arithmetic.asm,add sub
+        2.loadStore.asm, load and store 
+        3.dataHazard.asm, load use hazards
+        4.forwarding.asm,data forwarding scenarios
+        5.branch.asm, branches
+        6.logical.asm, logic operations
+        7.shift.asm, shifts
+        8.noop.asm, noop instructions
+        9.manyHazards.asm, multiple hazzards
+        10.branchPrediction.asm, branch prediction 
+
+Extra Credit 
+    support for branch hazards using stalling
+    support for branch harards using branch prediction
+
+Files
+    PA2.c  main C program
+    *.asm  files are the test files
+    testGen.exe assembly to machine code converter 
+
+Testing the files
+    each file should be tested indevidually
+        1. give executables right permissions
+            chmod 744 testGen.exe Forwarding.exe NoHazards.exe HaltAndNoop.exe
+        2.compile your code into an executable
+            gcc -o PA2 PA2.c
+        3.test each test case indevidually
+            example:
+            ./testGen.exe < dataHazard.asm > dataHazard.in
+            ./Forwarding.exe < dataHazard.in > dataHazard.out  
+            ./PA2 < dataHazard.in > dataHazard_my.out
+        4.If you have 2 output files, you can compare them with diff if you need to:
+            diff file1 file2
+Conclusion
+    This was a challenging assignment that really helped me understand pipelining.
+    The hardest part was getting the hazard detection right and making sure all the
+    pipeline stages work together correctly, as well as familiarizing mycelf with C.
+
+Darya Pylypenko
+CDA 3100, summer 2025
